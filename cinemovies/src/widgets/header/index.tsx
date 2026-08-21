@@ -3,6 +3,10 @@ import { Input } from "@/components/ui/input";
 import { Clapperboard, X } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Loader } from "@/shared/UI/loader";
+import { useAuthStore } from "@/shared/store/auth-store";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
+import { ROUTES } from "@/shared/routes";
 
 const nav = [
   {
@@ -23,9 +27,10 @@ interface HeaderProps {
 }
 
 export const Header = ({ search, setSearch, isLoading }: HeaderProps) => {
+  const { user } = useAuthStore();
   return (
     <header className="sticky top-0 z-50 bg-black/60 backdrop-blur-md w-full flex items-center gap-2 justify-between px-6 py-3 h-auto border-b border-white/10">
-      <div className="flex gap-6 items-center">
+      <div className="flex gap-6 items-center justify-between">
         <h1 className="text-lg font-bold flex items-center gap-2 text-white">
           <Clapperboard className="text-red-500" />
           CinemaMovies
@@ -59,9 +64,21 @@ export const Header = ({ search, setSearch, isLoading }: HeaderProps) => {
           }
         />
       </div>
+
       <Avatar>
-        <AvatarImage src="https://github.com/Vladimir3412.png" />
-        <AvatarFallback>V3</AvatarFallback>
+        {user ? (
+          <>
+          <p></p>
+            <Link href={ROUTES.LOGIN_PAGE}>
+              <Button>Выйти</Button>
+            </Link>
+            
+          </>
+        ) : (
+          <Link href={ROUTES.LOGIN_PAGE}>
+            <Button>Войти</Button>
+          </Link>
+        )}
       </Avatar>
     </header>
   );

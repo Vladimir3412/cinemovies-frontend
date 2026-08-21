@@ -1,4 +1,4 @@
-import { AuthWrapper } from "@/features/auth/register";
+import { AuthWrapper } from "@/features/auth/auth-wrapper";
 import { RegisterForm } from "@/features/auth/register-form";
 import { ROUTES } from "@/shared/routes";
 

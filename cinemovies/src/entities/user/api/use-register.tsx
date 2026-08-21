@@ -5,12 +5,14 @@ import { useMutation } from "@tanstack/react-query";
 import { AxiosError } from "axios";
 import z from "zod";
 import { RegisterRequest } from "../model/auth";
+import { useRouter } from "next/navigation";
+import { ROUTES } from "@/shared/routes";
 
 export const registerForm = z
   .object({
-    email: z.string().email(),
-    password: z.string().min(6),
-    confirmPassword: z.string().min(6),
+    email: z.string().email("Некорректный email"),
+    password: z.string().min(6, "Пароль должен быть не менее 6 символов"),
+    confirmPassword: z.string().min(6, "Минимум 6 символов"),
   })
   .refine((data) => data.password === data.confirmPassword, {
     message: "Пароли не совпадают",
@@ -25,11 +27,14 @@ export const register = async (data: RegisterRequest) => {
 };
 
 export const useRegister = () => {
+  const router = useRouter();
+
   return useMutation({
-    mutationFn: ({ email, password }: RegisterRequest) => register({ email, password }),
+    mutationFn: ({ email, password }: RegisterRequest) =>
+      register({ email, password }),
     mutationKey: [ApiQueryKeys.REGISTER],
     onSuccess: () => {
-      console.log("success");
+      router.push(ROUTES.HOME_PAGE);
     },
     onError: (error: AxiosError<{ message: string }>) => {
       const errorMessage =
