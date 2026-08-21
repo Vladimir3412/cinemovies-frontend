@@ -2,31 +2,27 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
-  registerForm,
-  RegisterFormUser,
-  useRegister,
-} from "@/entities/user/api/use-register";
+  loginForm,
+  LoginFormUser,
+  useLogin,
+} from "@/entities/user/api/use-login";
 import { RegisterRequest } from "@/entities/user/model/auth";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Controller, useForm } from "react-hook-form";
-export const RegisterForm = () => {
-  const {
-    control,
-    formState: { errors },
-    handleSubmit,
-  } = useForm<RegisterFormUser>({
-    resolver: zodResolver(registerForm),
+
+export const LoginForm = () => {
+  const { control, formState: { errors }, handleSubmit } = useForm<LoginFormUser>({
+    resolver: zodResolver(loginForm),
     mode: "onChange",
     defaultValues: {
       email: "",
       password: "",
-      confirmPassword: "",
     },
   });
-  const { mutate: register, isPending: isPendingRegister } = useRegister();
 
+  const { mutate: login, isPending: isPendingLogin } = useLogin();
   const onSubmit = ({ email, password }: RegisterRequest) => {
-    register({ email, password });
+    login({ email, password });
   };
   return (
     <div>
@@ -41,7 +37,7 @@ export const RegisterForm = () => {
               type="email"
               placeholder="Email"
               className="text-white border border-[#26262b] rounded-xl px-2.5 py-5 focus:outline-none"
-              error={errors?.email?.message}
+              error={errors.email?.message}
             />
           )}
         />
@@ -55,31 +51,37 @@ export const RegisterForm = () => {
               type="password"
               placeholder="Password"
               className="text-white border border-[#26262b] rounded-xl px-2.5 py-5  focus:outline-none"
-              error={errors?.password?.message}
+              error={errors.password?.message}
             />
           )}
         />
 
-        <p className="text-[#8b8b93] font-semibold mt-2">Повторите пароль</p>
+        {/* <p className="text-[#8b8b93] font-semibold mt-2">Повторите пароль</p>
         <Controller
           name="confirmPassword"
           control={control}
-          render={({ field }) => (
-            <Input
-              {...field}
-              type="password"
-              placeholder="Password"
-              className="text-white border border-[#26262b] rounded-xl px-2.5 py-5  focus:outline-none"
-              error={errors?.confirmPassword?.message}
-            />
+          render={({ field, fieldState }) => (
+            <>
+              <Input
+                {...field}
+                type="password"
+                placeholder="Password"
+                className="text-white border border-[#26262b] rounded-xl px-2.5 py-5  focus:outline-none"
+              />
+              {fieldState.error && (
+                <p className="text-red-300 text-sm">
+                  {fieldState.error.message}
+                </p>
+              )}
+            </>
           )}
-        />
+        /> */}
         <Button
           type="submit"
-          isLoading={isPendingRegister}
+          isLoading={isPendingLogin}
           className="mt-4 py-5 font-black text-lg cursor-pointer"
         >
-          Создать аккаунт
+          Войти в аккаунт
         </Button>
       </form>
       <div className="flex flex-col items-center mt-6 mb-5 border border-t-[#26262b]" />

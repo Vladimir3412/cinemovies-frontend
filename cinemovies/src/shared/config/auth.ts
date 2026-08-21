@@ -1,0 +1,4 @@
+export const AUTH_CONFIG = {
+  ACCESS_TOKEN_LIFETIME: 1 / 24 / 2,
+  REFRESH_TOKEN_LIFETIME: 30,
+} as const;

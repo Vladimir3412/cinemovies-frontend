@@ -1,13 +1,14 @@
 import { Input as InputPrimitive } from "@base-ui/react/input";
 import * as React from "react";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/shared/lib/utils";
 
 interface InputProps extends React.ComponentProps<"input"> {
   rightSection?: React.ReactNode;
+  error?: string;
 }
 
-function Input({ className, type, rightSection, ...props }: InputProps) {
+function Input({ className, type, rightSection, error, ...props }: InputProps) {
   return (
     <div className="relative">
       <InputPrimitive
@@ -24,6 +25,8 @@ function Input({ className, type, rightSection, ...props }: InputProps) {
           {rightSection}
         </div>
       )}
+
+      {error && <p className="text-sm text-destructive mt-0.5">{error}</p>}
     </div>
   );
 }

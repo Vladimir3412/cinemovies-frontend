@@ -1,15 +1,11 @@
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
 import {
   Card,
   // CardAction,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
-  CardTitle,
+  CardTitle
 } from "@/components/ui/card";
-import Image from "next/image";
 import { AuthTabs } from "@/shared/UI/auth-tabs";
 // import { Input } from "@/components/ui/input";
 // import { Label } from "@/components/ui/label";
