@@ -3,4 +3,6 @@ export const ApiQueryKeys = {
   MOVIES_POPULAR: "movies-popular",
   REGISTER: "register",
   LOGIN: "login",
+  LOGOUT: "logout",
+  REFRESH: "refresh",
 };
