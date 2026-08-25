@@ -6,9 +6,17 @@ import { cn } from "@/shared/lib/utils";
 interface InputProps extends React.ComponentProps<"input"> {
   rightSection?: React.ReactNode;
   error?: string;
+  leftIcon?: React.ReactNode;
 }
 
-function Input({ className, type, rightSection, error, ...props }: InputProps) {
+function Input({
+  className,
+  type,
+  rightSection,
+  error,
+  leftIcon,
+  ...props
+}: InputProps) {
   return (
     <div className="relative">
       <InputPrimitive
@@ -21,9 +29,14 @@ function Input({ className, type, rightSection, error, ...props }: InputProps) {
         {...props}
       />
       {rightSection && (
-        <div className="absolute right-2 top-1/2 -translate-y-1/2">
+        <div className="absolute  right-2 top-1/2 -translate-y-1/2">
           {rightSection}
         </div>
+      )}
+      {leftIcon && (
+        <span className="absolute left-2 top-1/2 -translate-y-1/2 ">
+          {leftIcon}
+        </span>
       )}
 
       {error && <p className="text-sm text-destructive mt-0.5">{error}</p>}

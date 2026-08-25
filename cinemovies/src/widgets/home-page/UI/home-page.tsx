@@ -5,8 +5,9 @@ import { MovieCard } from "@/entities/movies/movie-card/movie-card";
 import { useDebounce } from "@/shared/hooks/use-debounce";
 import { Header } from "@/widgets/header";
 import { HeroBanner } from "@/widgets/hero-banner";
+import { ChevronRight } from "lucide-react";
 import { useState } from "react";
-
+import MovieSection from "@/widgets/movie-section";
 export const HomePage = () => {
   const [search, setSearch] = useState("");
   const debounceSearch = useDebounce(search, 200);
@@ -14,16 +15,16 @@ export const HomePage = () => {
     query: debounceSearch,
     language: "ru-RU",
   });
+
   const { data: popularMovies } = useGetPopularMovies({ language: "ru-RU" });
-  const movies = debounceSearch ? data : popularMovies;
+  const movies = data;
   return (
     <>
       <Header search={search} setSearch={setSearch} isLoading={isLoading} />
       <HeroBanner />
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-        {movies?.data.results.map((movie) => (
-          <MovieCard key={movie.id} movie={movie} />
-        ))}
+      <div className="flex flex-col gap-6">
+        <MovieSection title="Популярные" movies={popularMovies?.data.results} />
+        <MovieSection title="Все" movies={movies?.data.results} />
       </div>
     </>
   );

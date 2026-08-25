@@ -1,0 +1,1 @@
+export const DATE_YEAR_DEFAULT_FORMAT = "YYYY";
