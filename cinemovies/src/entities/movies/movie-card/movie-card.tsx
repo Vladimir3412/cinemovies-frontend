@@ -9,7 +9,7 @@ export const MovieCard = ({ movie }: { movie: Movie }) => {
           src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
           alt={movie.title}
           fill
-          className="object-cover rounded-lg"
+          className="object-cover rounded-lg  cursor-pointer hover:scale-105 transition duration-300 "
         />
       </div>
     </div>
