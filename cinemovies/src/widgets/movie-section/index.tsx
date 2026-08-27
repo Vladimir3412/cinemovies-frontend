@@ -1,6 +1,6 @@
 "use client";
 import { ChevronRight } from "lucide-react";
-import { MovieCard } from "@/entities/movies/movie-card/movie-card";
+import { MovieCard } from "@/entities/movies/UI/movie-card/movie-card";
 import { Movie } from "@/entities/movies/model/movie";
 import {
   Carousel,
