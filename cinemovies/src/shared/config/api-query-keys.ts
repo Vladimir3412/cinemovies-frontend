@@ -6,4 +6,5 @@ export const ApiQueryKeys = {
   LOGOUT: "logout",
   REFRESH: "refresh",
   MOVIE_VIDEOS: "movie-videos",
+  MOVIE_DETAILS: "movie-details",
 };

@@ -1,4 +1,4 @@
-import { Movie } from "../model/movie";
+import { Movie } from "@/entities/movies/model/movie";
 import Image from "next/image";
 
 export const MovieCard = ({ movie }: { movie: Movie }) => {

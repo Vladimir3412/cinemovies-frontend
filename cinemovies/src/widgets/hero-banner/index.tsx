@@ -17,6 +17,7 @@ import {
 } from "@/components/ui/carousel";
 import { useGetMovieVideos } from "@/entities/movies/api/use-get-movie-videos";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 export const HeroBanner = () => {
   const { data } = useGetPopularMovies({ language: "ru-RU" });
   const [api, setApi] = useState<CarouselApi>();
@@ -67,10 +68,12 @@ export const HeroBanner = () => {
                     opts={{
                       playerVars: {
                         autoplay: 1,
-                        mute: 1, // без звука
-                        controls: 0, // без кнопок управления
-                        showinfo: 0, // без инфо
+                        mute: 1,
+                        controls: 0,
+                        showinfo: 0,
                         modestbranding: 1,
+                        loop: 1,
+                        playlist: trailer.key,
                       },
                     }}
                     onPlay={() => setVideoReady(true)}
@@ -115,13 +118,15 @@ export const HeroBanner = () => {
                     {movie?.overview ?? "Описание фильма"}
                   </p>
                   <div className="flex items-center gap-2 mt-4">
-                    <Button
-                      leftIcon={<Play size={16} fill="" />}
-                      size="lg"
-                      className="font-semibold cursor-pointer bg-white hover:bg-white/80 text-black "
-                    >
-                      Смотреть
-                    </Button>
+                    <Link href={`/movie/${movie?.id}`}>
+                      <Button
+                        leftIcon={<Play size={16} fill="" />}
+                        size="lg"
+                        className="font-semibold cursor-pointer bg-white hover:bg-white/80 text-black "
+                      >
+                        Смотреть
+                      </Button>
+                    </Link>
 
                     <Button
                       variant="secondary"
