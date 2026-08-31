@@ -9,6 +9,7 @@ import {
   FORMAT_DATETIME,
 } from "@/shared/lib/dayjs";
 import { formatCurrency } from "@/shared/lib/format-number";
+import VoteCircle from "@/shared/UI/vote-circle";
 import { Play, Plus } from "lucide-react";
 import Image from "next/image";
 
@@ -76,7 +77,7 @@ export const MovieHero = ({ movie }: { movie?: MovieDetails }) => {
           </div>
         </div>
       </div>
-      <div className="flex  w-full">
+      <div className="flex w-full">
         <MovieDetailsCard
           description="Дата релиза"
           title={DEFAULT_FORMAT(movie.release_date)}
@@ -99,6 +100,44 @@ export const MovieHero = ({ movie }: { movie?: MovieDetails }) => {
             .map((country) => country.iso_3166_1)
             .join(", ")}
         />
+      </div>
+
+      <div className="p-12 text-white">
+        <div className="grid grid-cols-2 w-full gap-8">
+          <section className="flex flex-col gap-2">
+            <p className="text-gray-400">О фильме</p>
+            <h1 className="text-xl">{movie?.overview ?? "Описание фильма"}</h1>
+            <div className="flex gap-2 items-center">
+              <VoteCircle rating={movie.vote_average} />
+              <div className="flex flex-col gap-0.5">
+                <h1>Средняя оценка</h1>
+                <p className="text-gray-400 text-sm">
+                  {movie.vote_count} оценок
+                </p>
+              </div>
+            </div>
+          </section>
+          <section className="flex flex-col gap-2">
+            <h1 className="text-gray-400">Производство</h1>
+            {movie.production_companies.map((company) => (
+              <div key={company.id}>
+                <div className="bg-[#101013] border border-[#26262b] p-4 rounded-xl flex items-center hover:bg-[#1a1a20] transition-colors duration-200 gap-4 ">
+                  {company.logo_path && (
+                    <div className="bg-white rounded-lg p-1.5 flex items-center justify-center w-[70px] h-[70px]">
+                      <Image
+                        src={`https://image.tmdb.org/t/p/w500${company.logo_path ?? ""}`}
+                        width={70}
+                        height={70}
+                        alt={company.name}
+                      />
+                    </div>
+                  )}
+                  <span>{company.name}</span>
+                </div>
+              </div>
+            ))}
+          </section>
+        </div>
       </div>
     </div>
   );
