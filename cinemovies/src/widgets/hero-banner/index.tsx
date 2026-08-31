@@ -105,7 +105,7 @@ export const HeroBanner = () => {
                         <Badge className="text-[#F2A093] text-lg font-semibold h-7 bg-[#0A0A0C99] border-2 border-[#E4705E59]">
                           {movie.adult ? "18+" : "16+"}
                         </Badge>
-                        <Badge className="text-[#F0CE8A] text-lg  font-semibold  h-7 bg-[#0A0A0C99] border-2 border-[#D4A44759]">
+                        <Badge className="text-[#F0CE8A] text-lg  font-semibold h-7 bg-[#0A0A0C99] border-2 border-[#D4A44759]">
                           {movie.vote_average.toFixed(1)} IMDB
                         </Badge>
                       </div>
