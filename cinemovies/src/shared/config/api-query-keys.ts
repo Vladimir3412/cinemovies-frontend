@@ -7,4 +7,6 @@ export const ApiQueryKeys = {
   REFRESH: "refresh",
   MOVIE_VIDEOS: "movie-videos",
   MOVIE_DETAILS: "movie-details",
+  Actors: "actors",
+  MOVIE_IMAGES: "movie-images",
 };

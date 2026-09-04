@@ -6,7 +6,6 @@ const CircleRating = ({ rating }: { rating: number }) => {
   return (
     <div className="relative w-24 h-24 flex items-center justify-center">
       <svg className="w-full h-full -rotate-90" viewBox="0 0 100 100">
-        {/* фоновый круг */}
         <circle
           cx="50"
           cy="50"

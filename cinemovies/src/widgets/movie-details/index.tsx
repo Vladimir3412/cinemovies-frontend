@@ -6,6 +6,7 @@ import { useDebounce } from "@/shared/hooks/use-debounce";
 import { Header } from "@/widgets/header";
 import { useState } from "react";
 import { MovieHero } from "@/widgets/movie-hero";
+import MovieInfo from "@/widgets/movie-details/UI/movie-info";
 
 export const MovieDetailsPage = ({ id }: { id: number }) => {
   const [search, setSearch] = useState("");
@@ -19,6 +20,7 @@ export const MovieDetailsPage = ({ id }: { id: number }) => {
     <div>
       <Header search={search} setSearch={setSearch} isLoading={isLoading} />
       <MovieHero movie={movie?.data} />
+      <MovieInfo movie={movie?.data} id={id} />
     </div>
   );
 };
